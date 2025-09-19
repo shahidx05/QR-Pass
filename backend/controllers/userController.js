@@ -7,7 +7,7 @@ exports.registerUser = async (req, res) => {
     try {
         let user = await User.findOne({ username });
         if (user) {
-            return res.status(400).json({ msg: 'Is username se user pehle se hai' });
+            return res.status(400).json({ msg: 'User Already Exists' });
         }
         
         user = new User({
@@ -18,10 +18,9 @@ exports.registerUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(password, salt);
         await user.save();
-        
-        // Register karte hi user ko login karwa do
-        const payload = { user: { id: user.id } }; // Payload ab simple hai
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '8h' }, (err, token) => {
+       
+        const payload = { user: { id: user.id } };
+        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '2h' }, (err, token) => {
             if (err) throw err;
             res.status(201).json({ token, user: {id: user.id, username: user.username } });
         });
@@ -42,7 +41,7 @@ exports.loginUser = async (req, res) => {
         if (!isMatch) return res.status(400).json({ msg: 'Invalid Credentials' });
         
         const payload = { user: { id: user.id } }; 
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '8h' }, (err, token) => {
+        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '2h' }, (err, token) => {
             if (err) throw err;
             res.json({ token, user: {id: user.id, username: user.username } });
         });

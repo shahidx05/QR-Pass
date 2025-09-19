@@ -11,7 +11,7 @@ const EventSchema = new mongoose.Schema({
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // Yeh Organizer ki ID hogi
+    ref: 'User',
     required: true,
   },
 }, { timestamps: true });

@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const protect = (req, res, next) => {
     const token = req.header('x-auth-token');
     if (!token) {
-        return res.status(401).json({ msg: 'Token nahi hai, authorization denied' });
+        return res.status(401).json({ msg: 'Token is invalid, authorization denied' });
     }
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -13,8 +13,6 @@ const protect = (req, res, next) => {
         res.status(401).json({ msg: 'Token valid nahi hai' });
     }
 };
-
-// 'organizerOnly' middleware ki ab zaroorat nahi.
 
 module.exports = { protect };
 
