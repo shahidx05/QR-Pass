@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR - Pass</title>
-    <!-- QR Scanner ki library -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,176 +12,76 @@
     <style>
         /* --- STYLING (CSS) --- */
         :root {
-            --primary-blue: #4285F4;
-            --primary-blue-dark: #357ABD;
-            --text-dark: #202124;
-            --text-light: #5f6368;
-            --bg-light: #f8f9fa;
-            --border-color: #dadce0;
-            --white: #ffffff;
-            --success: #34A853;
-            --danger: #EA4335;
-            --warning: #FBBC04;
+            --primary-blue: #4285F4; --primary-blue-dark: #357ABD; --text-dark: #202124; --text-light: #5f6368; --bg-light: #f8f9fa; --border-color: #dadce0; --white: #ffffff; --success: #34A853; --danger: #EA4335; --warning: #FBBC04;
         }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 15px;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--white);
-            padding: 25px 30px;
-            border-radius: 12px;
-            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 25px;
-        }
-
-        header h1 {
-            font-size: 2.4em;
-            color: var(--primary-blue);
-            font-weight: 700;
-            margin: 0 0 5px 0;
-        }
-
-        .auth-link, .nav-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-dark); margin: 0; padding: 15px; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; background-color: var(--white); padding: 25px 30px; border-radius: 12px; box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15); }
+        header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid var(--border-color); padding-bottom: 25px; }
+        header h1 { font-size: 2.4em; color: var(--primary-blue); font-weight: 700; margin: 0 0 5px 0; }
+        .auth-link, .nav-link { display: inline-block; margin-top: 10px; color: var(--primary-blue); text-decoration: none; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
         .auth-link:hover, .nav-link:hover { opacity: 0.8; }
-
-        .header-private {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-align: left;
-        }
-        .header-private button {
-            width: auto;
-            padding: 10px 20px;
-            font-size: 0.9em;
-        }
-        .header-private p {
-            margin: 0;
-            color: var(--text-light);
-        }
-
-        .btn, button {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 10px;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
-        }
-        .btn:hover, button:hover { 
-            background-color: var(--primary-blue-dark);
-            box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
-            transform: translateY(-1px);
-        }
-        .btn:disabled, button:disabled {
-            background-color: #9e9e9e;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
+        .header-private { display: flex; justify-content: space-between; align-items: center; text-align: left; }
+        .header-private button { width: auto; padding: 10px 20px; font-size: 0.9em; }
+        .header-private p { margin: 0; color: var(--text-light); }
+        .btn, button { display: inline-flex; justify-content: center; align-items: center; width: 100%; padding: 12px 20px; border: none; border-radius: 8px; background-color: var(--primary-blue); color: var(--white); font-size: 1em; font-weight: 600; cursor: pointer; text-align: center; margin-top: 10px; transition: all 0.2s ease-in-out; box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15); }
+        .btn:hover, button:hover { background-color: var(--primary-blue-dark); box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15); transform: translateY(-1px); }
+        .btn:disabled, button:disabled { background-color: #9e9e9e; cursor: not-allowed; transform: none; box-shadow: none; }
         .btn-secondary { background-color: var(--text-light); }
         .btn-secondary:hover { background-color: #494c50; }
         .btn-danger { background-color: var(--danger); }
         .btn-danger:hover { background-color: #d03022; }
-        .btn-scanner { text-decoration: none; background-color: var(--success); margin: 25px 0; }
+        .btn-scanner { text-decoration: none; background-color: var(--success); margin: 25px 0;}
         .btn-scanner:hover { background-color: #2b8343; }
-
-        .card {
-            background: var(--white);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
-        }
-
+        .card { background: var(--white); padding: 25px; border-radius: 12px; margin-bottom: 25px; border: 1px solid var(--border-color); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9em; }
-        .form-group input { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid var(--border-color); 
-            border-radius: 8px; 
-            box-sizing: border-box; 
-            font-size: 1em;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
-        }
-
-        .events-container .event-item {
-            padding: 20px;
-            background-color: #f8f9fa;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 1em; transition: border-color 0.2s, box-shadow 0.2s; }
+        .form-group input:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2); }
+        .events-container .event-item { padding: 20px; background-color: #f8f9fa; border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
         .event-item h4 { margin: 0; font-size: 1.2em; font-weight: 600; }
         .event-item p { margin: 5px 0 0 0; color: var(--text-light); }
         .event-item .btn { width: auto; padding: 10px 18px; font-size: 0.9em; }
-
         #qr-code-section img { max-width: 250px; margin: 20px auto; display: block; border-radius: 12px; }
-
-        #qr-reader { border-radius: 12px; overflow: hidden; }
-        #scanner-result { margin-top: 20px; padding: 15px; border-radius: 8px; font-weight: 600; text-align: center; }
+        #qr-reader { border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+        #scanner-result { padding: 15px; border-radius: 8px; font-weight: 600; text-align: center; }
         #scanner-result.success { background-color: #e6f4ea; color: #1e8e3e; }
         #scanner-result.error { background-color: #fce8e6; color: #c5221f; }
         #scanner-result.warning { background-color: #feefc3; color: #a56d00; }
-
         .stats-container { display: flex; gap: 20px; margin-bottom: 25px; }
         .stat-card { flex: 1; background: var(--bg-light); padding: 20px; text-align: center; border-radius: 12px; border: 1px solid var(--border-color); }
         .stat-card h4 { margin: 0 0 10px 0; color: var(--text-light); font-weight: 600; }
         .stat-card p { margin: 0; font-size: 2.5em; font-weight: 700; color: var(--primary-blue); }
-
         .attendee-item { padding: 15px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
         .attendee-item:last-child { border-bottom: none; }
         .attendee-info p { margin: 0; color: var(--text-light); }
         .attendee-info p strong { display: block; font-size: 1.1em; color: var(--text-dark); font-weight: 600;}
         .status-checkedin { color: var(--success); font-weight: 600; }
         .status-pending { color: var(--warning); font-weight: 600; }
-
         .hidden { display: none; }
+
+        /* --- NAYE MESSAGE BOX KE LIYE CSS --- */
+        #message-box {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 25px;
+            border-radius: 8px;
+            color: var(--white);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+        }
+        #message-box.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        #message-box.success { background-color: var(--success); }
+        #message-box.error { background-color: var(--danger); }
 
         @media (max-width: 600px) {
             body { padding: 10px; }
@@ -200,13 +98,11 @@
 </head>
 <body>
     <div class="container">
-        <header id="app-header">
-            <!-- Header content will be loaded by JavaScript -->
-        </header>
-        <main id="app-main">
-            <!-- Main content (pages) will be loaded by JavaScript -->
-        </main>
+        <header id="app-header"></header>
+        <main id="app-main"></main>
     </div>
+    <!-- Naya Message Box ka HTML -->
+    <div id="message-box"></div>
 
     <script>
         // --- JAVASCRIPT LOGIC ---
@@ -217,168 +113,64 @@
 
         // Local testing ke liye, is line ko use karein:
         // const API_BASE_URL = 'http://localhost:5000/api';
-        
-        let html5QrCode; // QR Scanner instance
+        let html5QrCode; 
 
         // --- 2. DOM ELEMENTS ---
         const appHeader = document.getElementById('app-header');
         const appMain = document.getElementById('app-main');
+        const messageBox = document.getElementById('message-box');
 
-        // --- 3. API HELPER (Backend se baat karne ke liye) ---
+        // --- Naya Message Box Function (alert() ki jagah) ---
+        function showMessage(message, type = 'success') {
+            messageBox.textContent = message;
+            messageBox.className = type; // success ya error
+            messageBox.classList.add('show');
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000); // 3 second baad message apne aap chala jaayega
+        }
+        
+        // --- 3. API HELPER (alert() hata diya gaya) ---
         async function apiRequest(endpoint, method = 'GET', body = null) {
             const url = `${API_BASE_URL}${endpoint}`;
-            const options = {
-                method,
-                headers: { 'Content-Type': 'application/json' }
-            };
+            const options = { method, headers: { 'Content-Type': 'application/json' } };
             const token = localStorage.getItem('authToken');
-            if (token) {
-                options.headers['x-auth-token'] = token;
-            }
-            if (body) {
-                options.body = JSON.stringify(body);
-            }
+            if (token) { options.headers['x-auth-token'] = token; }
+            if (body) { options.body = JSON.stringify(body); }
             try {
                 const response = await fetch(url, options);
                 const data = await response.json();
-                if (!response.ok) {
-                    throw new Error(data.msg || 'Something went wrong');
-                }
+                if (!response.ok) { throw new Error(data.msg || 'Something went wrong'); }
                 return data;
             } catch (error) {
                 console.error(`API Error on ${method} ${endpoint}:`, error);
-                alert(`Error: ${error.message}`);
+                showMessage(error.message, 'error'); // Ab alert ki jagah naya message box
                 throw error;
             }
         }
 
-        // --- 4. HTML TEMPLATES (Alag-alag pages ke liye HTML) ---
+        // --- 4. HTML TEMPLATES ---
         const templates = {
-            // Header Templates
             publicHeader: `<h1>QR - Pass</h1><p style="color: var(--text-light); margin-top: 5px;">Aapke campus events ke liye digital ticket.</p><a onclick="router.navigateTo('login')" class="auth-link">Organizer Login/Register</a>`,
-            privateHeader: (username) => `
-                <div class="header-private">
-                    <div>
-                        <h1>Dashboard</h1>
-                        <p>Welcome, ${username}!</p>
-                    </div>
-                    <button onclick="logout()" class="btn-danger">Logout</button>
-                </div>`,
-
-            // Page Templates
+            privateHeader: (username) => `<div class="header-private"><div><h1>Dashboard</h1><p>Welcome, ${username}!</p></div><button onclick="logout()" class="btn-danger">Logout</button></div>`,
             loading: `<p style="text-align: center; color: var(--text-light);">Loading...</p>`,
-            
-            homepage: `
-                <h2>Upcoming Events</h2>
-                <div id="events-list" class="events-container"></div>
-                <div id="pass-section" class="card hidden">
-                    <h3>Get Pass for <span id="event-name-display"></span></h3>
-                    <form id="pass-form">
-                        <input type="hidden" id="event-id-input" name="eventId">
-                        <div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" required></div>
-                        <div class="form-group"><label for="rollNumber">Roll Number</label><input type="text" id="rollNumber" name="rollNumber" required></div>
-                        <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
-                        <button type="submit" class="btn">Generate QR Pass</button>
-                        <button type="button" id="back-to-events" class="btn-secondary">Back to Events</button>
-                    </form>
-                </div>
-                <div id="qr-code-section" class="card text-center hidden">
-                    <h3>Your Pass is Ready!</h3>
-                    <p style="color: var(--text-light);">Please take a screenshot of this QR Code.</p>
-                    <img id="qr-code-image" src="" alt="Your QR Code">
-                    <button id="qr-back-button" class="btn">Done</button>
-                </div>`,
-            
-            login: `
-                <div class="card auth-card">
-                    <form id="login-form">
-                        <h3>Login</h3>
-                        <div class="form-group"><label for="login-username">Username</label><input type="text" id="login-username" name="username" required></div>
-                        <div class="form-group"><label for="login-password">Password</label><input type="password" id="login-password" name="password" required></div>
-                        <button type="submit" class="btn">Login</button>
-                    </form>
-                    <hr style="border: 0; height: 1px; background: var(--border-color); margin: 30px 0;">
-                    <form id="register-form">
-                        <h3>Create New Account</h3>
-                        <div class="form-group"><label for="register-username">Username</label><input type="text" id="register-username" name="username" required></div>
-                        <div class="form-group"><label for="register-password">Password</label><input type="password" id="register-password" name="password" required></div>
-                        <button type="submit" class="btn-secondary">Register</button>
-                    </form>
-                </div>`,
-
-            dashboard: `
-                <div class="card">
-                    <h3>Create New Event</h3>
-                    <form id="create-event-form">
-                        <div class="form-group"><label for="event-name">Event Name</label><input type="text" id="event-name" name="name" required></div>
-                        <div class="form-group"><label for="event-date">Event Date</label><input type="date" id="event-date" name="date" required></div>
-                        <button type="submit" class="btn">Create Event</button>
-                    </form>
-                </div>
-                <a onclick="router.navigateTo('scanner')" class="btn-scanner">Go to QR Scanner</a>
-                <div class="card">
-                    <h3>Your Events</h3>
-                    <div id="my-events-list" class="events-container"></div>
-                </div>`,
-
-            eventDetails: `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 id="event-details-title" style="margin: 0;">Event Details</h2>
-                    <a onclick="router.navigateTo('dashboard')" class="nav-link">Back to Dashboard</a>
-                </div>
-                <div class="stats-container">
-                    <div class="stat-card"><h4>Total Registered</h4><p id="total-registered">0</p></div>
-                    <div class="stat-card"><h4>Total Checked-In</h4><p id="total-checked-in">0</p></div>
-                </div>
-                <div class="card">
-                    <h3>Attendee List</h3>
-                    <div id="attendee-list" class="attendee-container"></div>
-                </div>`,
-
-            scanner: `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 style="margin: 0;">QR Pass Scanner</h2>
-                    <a onclick="router.navigateTo('dashboard')" class="nav-link">Back to Dashboard</a>
-                </div>
-                <div class="card scanner-card">
-                    <div id="qr-reader"></div>
-                    <div id="scanner-result"><p>Please scan a QR code...</p></div>
-                </div>`
+            homepage: `<h2>Upcoming Events</h2><div id="events-list" class="events-container"></div><div id="pass-section" class="card hidden"><h3>Get Pass for <span id="event-name-display"></span></h3><form id="pass-form"><input type="hidden" id="event-id-input" name="eventId"><div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" required></div><div class="form-group"><label for="rollNumber">Roll Number</label><input type="text" id="rollNumber" name="rollNumber" required></div><div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div><button type="submit" class="btn">Generate QR Pass</button><button type="button" id="back-to-events" class="btn-secondary">Back to Events</button></form></div><div id="qr-code-section" class="card text-center hidden"><h3>Your Pass is Ready!</h3><p id="qr-message" style="color: var(--warning); font-weight: bold;"></p><img id="qr-code-image" src="" alt="Your QR Code"><button id="qr-back-button" class="btn">Done</button></div>`,
+            login: `<div class="card auth-card"><form id="login-form"><h3>Login</h3><div class="form-group"><label for="login-username">Username</label><input type="text" id="login-username" name="username" required></div><div class="form-group"><label for="login-password">Password</label><input type="password" id="login-password" name="password" required></div><button type="submit" class="btn">Login</button></form><hr style="border: 0; height: 1px; background: var(--border-color); margin: 30px 0;"><form id="register-form"><h3>Create New Account</h3><div class="form-group"><label for="register-username">Username</label><input type="text" id="register-username" name="username" required></div><div class="form-group"><label for="register-password">Password</label><input type="password" id="register-password" name="password" required></div><button type="submit" class="btn-secondary">Register</button></form></div>`,
+            dashboard: `<div class="card"><h3>Create New Event</h3><form id="create-event-form"><div class="form-group"><label for="event-name">Event Name</label><input type="text" id="event-name" name="name" required></div><div class="form-group"><label for="event-date">Event Date</label><input type="date" id="event-date" name="date" required></div><button type="submit" class="btn">Create Event</button></form></div><a onclick="router.navigateTo('scanner')" class="btn-scanner">Go to QR Scanner</a><div class="card"><h3>Your Events</h3><div id="my-events-list" class="events-container"></div></div>`,
+            eventDetails: `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"><h2 id="event-details-title" style="margin: 0;">Event Details</h2><a onclick="router.navigateTo('dashboard')" class="nav-link">Back to Dashboard</a></div><div class="stats-container"><div class="stat-card"><h4>Total Registered</h4><p id="total-registered">0</p></div><div class="stat-card"><h4>Total Checked-In</h4><p id="total-checked-in">0</p></div></div><div class="card"><h3>Attendee List</h3><div id="attendee-list" class="attendee-container"></div></div>`,
+            scanner: `<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;"><h2 style="margin: 0;">QR Pass Scanner</h2><a onclick="router.navigateTo('dashboard')" class="nav-link">Back to Dashboard</a></div><div class="card scanner-card"><div id="qr-reader"></div><div id="scanner-result" class="hidden"><p>Scan result will appear here.</p></div></div>`
         };
 
         // --- 5. PAGE LOGIC & ROUTER ---
         const router = {
             state: {}, 
-
-            navigateTo(page, state = {}) {
-                if (html5QrCode && html5QrCode.isScanning) {
-                    html5QrCode.stop().catch(err => console.error("Failed to stop scanner", err));
-                }
-                this.state = state;
-                window.location.hash = page;
-            },
-
+            navigateTo(page, state = {}) { if (html5QrCode && html5QrCode.isScanning) { html5QrCode.stop().catch(err => console.error("Failed to stop scanner", err)); } this.state = state; window.location.hash = page; },
             async handleRouteChange() {
                 const page = window.location.hash.substring(1) || (localStorage.getItem('authToken') ? 'dashboard' : 'homepage');
-                
                 appMain.innerHTML = templates.loading;
-
-                let user = null;
-                try {
-                    user = JSON.parse(localStorage.getItem('user'));
-                } catch(e) {
-                    logout();
-                    return;
-                }
-
-                if (localStorage.getItem('authToken') && user) {
-                    appHeader.innerHTML = templates.privateHeader(user.username);
-                } else {
-                    appHeader.innerHTML = templates.publicHeader;
-                }
-
+                let user = null; try { user = JSON.parse(localStorage.getItem('user')); } catch(e) { logout(); return; }
+                if (localStorage.getItem('authToken') && user) { appHeader.innerHTML = templates.privateHeader(user.username); } else { appHeader.innerHTML = templates.publicHeader; }
                 appMain.innerHTML = templates[page] || templates.homepage;
-
                 if (page === 'homepage') await pageLogic.homepage();
                 if (page === 'login') await pageLogic.login();
                 if (page === 'dashboard') await pageLogic.dashboard();
@@ -387,125 +179,79 @@
             }
         };
 
+        // Har page ka specific logic
         const pageLogic = {
             async homepage() {
                 const eventsList = document.getElementById('events-list');
                 const passSection = document.getElementById('pass-section');
-                
                 const events = await apiRequest('/events');
                 eventsList.innerHTML = '';
-                if (events && events.length > 0) {
-                    events.forEach(event => {
-                        const div = document.createElement('div');
-                        div.className = 'event-item';
-                        div.innerHTML = `<div><h4>${event.name}</h4><p>${new Date(event.date).toLocaleDateString()}</p></div>
-                                         <button class="btn" onclick="handlers.showPassForm('${event._id}', '${event.name}')">Get Pass</button>`;
-                        eventsList.appendChild(div);
-                    });
-                } else {
-                    eventsList.innerHTML = '<p>No upcoming events found.</p>';
-                }
-                
+                if (events && events.length > 0) { events.forEach(event => { const div = document.createElement('div'); div.className = 'event-item'; div.innerHTML = `<div><h4>${event.name}</h4><p>${new Date(event.date).toLocaleDateString()}</p></div><button class="btn" onclick="handlers.showPassForm('${event._id}', '${event.name}')">Get Pass</button>`; eventsList.appendChild(div); }); } else { eventsList.innerHTML = '<p>No upcoming events found.</p>'; }
                 document.getElementById('pass-form').addEventListener('submit', handlers.generatePass);
                 document.getElementById('back-to-events').addEventListener('click', () => { passSection.classList.add('hidden'); eventsList.classList.remove('hidden'); });
                 document.getElementById('qr-back-button').addEventListener('click', () => { document.getElementById('qr-code-section').classList.add('hidden'); eventsList.classList.remove('hidden'); });
             },
-
-            async login() {
-                document.getElementById('login-form').addEventListener('submit', handlers.login);
-                document.getElementById('register-form').addEventListener('submit', handlers.register);
-            },
-            
+            async login() { document.getElementById('login-form').addEventListener('submit', handlers.login); document.getElementById('register-form').addEventListener('submit', handlers.register); },
             async dashboard() {
                 const myEventsList = document.getElementById('my-events-list');
                 const user = JSON.parse(localStorage.getItem('user'));
-                
                 myEventsList.innerHTML = '<p>Loading your events...</p>';
                 const allEvents = await apiRequest('/events');
                 const myEvents = allEvents.filter(event => event.createdBy === user.id);
-                
                 myEventsList.innerHTML = '';
-                 if (myEvents && myEvents.length > 0) {
-                    myEvents.forEach(event => {
-                        const div = document.createElement('div');
-                        div.className = 'event-item';
-                        div.innerHTML = `<div><h4>${event.name}</h4><p>${new Date(event.date).toLocaleDateString()}</p></div>
-                                         <button class="btn" onclick="router.navigateTo('eventDetails', { eventId: '${event._id}' })">View Details</button>`;
-                        myEventsList.appendChild(div);
-                    });
-                } else {
-                    myEventsList.innerHTML = '<p>You have not created any events yet.</p>';
-                }
-                
+                 if (myEvents && myEvents.length > 0) { myEvents.forEach(event => { const div = document.createElement('div'); div.className = 'event-item'; div.innerHTML = `<div><h4>${event.name}</h4><p>${new Date(event.date).toLocaleDateString()}</p></div><button class="btn" onclick="router.navigateTo('eventDetails', { eventId: '${event._id}' })">View Details</button>`; myEventsList.appendChild(div); }); } else { myEventsList.innerHTML = '<p>You have not created any events yet.</p>'; }
                 document.getElementById('create-event-form').addEventListener('submit', handlers.createEvent);
             },
-            
             async eventDetails(eventId) {
-                if (!eventId) {
-                    alert('No event specified!');
-                    router.navigateTo('dashboard');
-                    return;
-                }
+                if (!eventId) { showMessage('No event specified!', 'error'); router.navigateTo('dashboard'); return; }
                 const data = await apiRequest(`/events/${eventId}/analytics`);
                 document.getElementById('event-details-title').textContent = `Analytics for "${data.eventName}"`;
                 document.getElementById('total-registered').textContent = data.totalRegistered;
                 document.getElementById('total-checked-in').textContent = data.totalCheckedIn;
-                
                 const attendeeList = document.getElementById('attendee-list');
                 attendeeList.innerHTML = '';
-
-                if (data.attendees && data.attendees.length > 0) {
-                    data.attendees.forEach(attendee => {
-                        const div = document.createElement('div');
-                        div.className = 'attendee-item';
-                        const status = attendee.isCheckedIn 
-                            ? `<span class="status-checkedin">Checked-In @ ${new Date(attendee.checkedInAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>`
-                            : `<span class="status-pending">Not Arrived</span>`;
-                        div.innerHTML = `<div class="attendee-info"><p><strong>${attendee.name}</strong></p><p>${attendee.rollNumber}</p></div><div>${status}</div>`;
-                        attendeeList.appendChild(div);
-                    });
-                } else {
-                    attendeeList.innerHTML = '<p>No passes have been generated for this event yet.</p>';
-                }
+                if (data.attendees && data.attendees.length > 0) { data.attendees.forEach(attendee => { const div = document.createElement('div'); div.className = 'attendee-item'; const status = attendee.isCheckedIn ? `<span class="status-checkedin">Checked-In @ ${new Date(attendee.checkedInAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>` : `<span class="status-pending">Not Arrived</span>`; div.innerHTML = `<div class="attendee-info"><p><strong>${attendee.name}</strong></p><p>${attendee.rollNumber}</p></div><div>${status}</div>`; attendeeList.appendChild(div); }); } else { attendeeList.innerHTML = '<p>No passes have been generated for this event yet.</p>'; }
             },
             
             async scanner() {
+                const qrReaderDiv = document.getElementById('qr-reader');
                 const resultDiv = document.getElementById('scanner-result');
-                let isScanning = false;
                 html5QrCode = new Html5Qrcode("qr-reader");
 
-                const onScanSuccess = async (decodedText) => {
-                    if (isScanning) return;
-                    isScanning = true;
-                    html5QrCode.pause();
-
-                    try {
-                        const result = await apiRequest('/passes/verify', 'POST', { qrString: decodedText });
-                        resultDiv.innerHTML = `<p>${result.msg}</p>`;
-                        resultDiv.className = result.status === 'SUCCESS' ? 'success' : (result.status === 'ALREADY_CHECKED_IN' ? 'warning' : 'error');
-                    } catch (error) {
-                        resultDiv.innerHTML = `<p>${error.message}</p>`;
-                        resultDiv.className = 'error';
-                    } finally {
-                        setTimeout(() => {
-                            if (html5QrCode.getState() === 2) { 
-                                html5QrCode.resume();
-                            }
-                            isScanning = false;
-                            resultDiv.innerHTML = '<p>Please scan the next QR code...</p>';
-                            resultDiv.className = '';
-                        }, 2500);
-                    }
-                };
-
-                html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: { width: 250, height: 250 } }, onScanSuccess)
+                const startScanner = () => {
+                    qrReaderDiv.classList.remove('hidden');
+                    resultDiv.classList.add('hidden');
+                    
+                    html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: { width: 250, height: 250 } }, onScanSuccess)
                     .catch(err => {
                         resultDiv.innerHTML = `<p>Error: Could not start camera. Please give permissions.</p>`;
                         resultDiv.className = 'error';
+                        resultDiv.classList.remove('hidden');
                     });
+                };
+                
+                const onScanSuccess = async (decodedText) => {
+                    html5QrCode.stop(); // Scan hote hi scanner band karo
+                    qrReaderDiv.classList.add('hidden'); // Camera view hide karo
+                    
+                    try {
+                        const result = await apiRequest('/passes/verify', 'POST', { qrString: decodedText });
+                        resultDiv.innerHTML = `<p>${result.msg}</p><button id="scan-again-btn" class="btn">Scan Again</button>`;
+                        resultDiv.className = result.status === 'SUCCESS' ? 'success' : (result.status === 'ALREADY_CHECKED_IN' ? 'warning' : 'error');
+                    } catch (error) {
+                        resultDiv.innerHTML = `<p>${error.message}</p><button id="scan-again-btn" class="btn">Scan Again</button>`;
+                        resultDiv.className = 'error';
+                    } finally {
+                        resultDiv.classList.remove('hidden');
+                        document.getElementById('scan-again-btn').addEventListener('click', startScanner);
+                    }
+                };
+                
+                startScanner();
             }
         };
         
+        // --- 6. EVENT HANDLERS ---
         const handlers = {
             showPassForm(eventId, eventName) {
                 document.getElementById('events-list').classList.add('hidden');
@@ -514,56 +260,42 @@
                 document.getElementById('event-name-display').textContent = eventName;
                 passSection.classList.remove('hidden');
             },
-            
             async generatePass(e) {
                 e.preventDefault();
                 const data = Object.fromEntries(new FormData(e.target).entries());
                 const result = await apiRequest('/passes/generate', 'POST', data);
+
                 document.getElementById('pass-section').classList.add('hidden');
                 const qrSection = document.getElementById('qr-code-section');
                 document.getElementById('qr-code-image').src = result.qrCodeUrl;
+                
+                // Naya message dikhane ka logic
+                const qrMessage = document.getElementById('qr-message');
+                if (result.msg) {
+                    qrMessage.textContent = result.msg;
+                } else {
+                    qrMessage.textContent = 'Please take a screenshot of this QR Code.';
+                }
+                
                 qrSection.classList.remove('hidden');
             },
-
-            async login(e) {
-                e.preventDefault();
-                const data = Object.fromEntries(new FormData(e.target).entries());
-                const result = await apiRequest('/users/login', 'POST', data);
-                localStorage.setItem('authToken', result.token);
-                localStorage.setItem('user', JSON.stringify(result.user));
-                router.navigateTo('dashboard');
-            },
-
-            async register(e) {
-                e.preventDefault();
-                const data = Object.fromEntries(new FormData(e.target).entries());
-                const result = await apiRequest('/users/register', 'POST', data);
-                localStorage.setItem('authToken', result.token);
-                localStorage.setItem('user', JSON.stringify(result.user));
-                router.navigateTo('dashboard');
-            },
-
+            async login(e) { e.preventDefault(); const data = Object.fromEntries(new FormData(e.target).entries()); const result = await apiRequest('/users/login', 'POST', data); localStorage.setItem('authToken', result.token); localStorage.setItem('user', JSON.stringify(result.user)); router.navigateTo('dashboard'); },
+            async register(e) { e.preventDefault(); const data = Object.fromEntries(new FormData(e.target).entries()); const result = await apiRequest('/users/register', 'POST', data); localStorage.setItem('authToken', result.token); localStorage.setItem('user', JSON.stringify(result.user)); router.navigateTo('dashboard'); },
             async createEvent(e) {
                 e.preventDefault();
                 const button = e.target.querySelector('button');
-                button.disabled = true;
-                button.textContent = 'Creating...';
+                button.disabled = true; button.textContent = 'Creating...';
                 const data = Object.fromEntries(new FormData(e.target).entries());
                 await apiRequest('/events', 'POST', data);
-                alert('Event created!');
+                showMessage('Event created successfully!'); // alert ki jagah naya message
                 e.target.reset();
-                button.disabled = false;
-                button.textContent = 'Create Event';
+                button.disabled = false; button.textContent = 'Create Event';
                 await pageLogic.dashboard(); 
             }
         };
 
-        function logout() {
-            localStorage.removeItem('authToken');
-            localStorage.removeItem('user');
-            router.navigateTo('homepage');
-        }
-
+        // --- 7. GLOBAL FUNCTIONS & INITIALIZATION ---
+        function logout() { localStorage.removeItem('authToken'); localStorage.removeItem('user'); router.navigateTo('homepage'); }
         window.addEventListener('hashchange', () => router.handleRouteChange());
         window.addEventListener('load', () => router.handleRouteChange());
 
